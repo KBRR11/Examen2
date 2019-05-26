@@ -6,7 +6,7 @@ $("#prod").keyup(function (){
     
     if(cod.length==3){
 
-    $.get("ventas",{"opc":1,"cod":cod},function(data) {
+    $.get("ventas",{"op":1,"cod":cod},function(data) {
         if(data==0){
             $("#prod").val("No existe el producto...!");
         }else{
@@ -97,19 +97,25 @@ $('#cliente').numeric({ });
 //buscar cliente
 $("#cliente").keyup(function(){
   var d = $("#cliente").val();
+  var dni=$("#iddatos").val();	
   if(d.length===8){
-    $.post("ventas",{"dni":d,"opc":2},function(data){
-        if(data==0){
-          $("#cliente").val("Cliente no existe...!");
-        }else{
-          var x = JSON.parse(data);
-          var nombre = x[0].nombres+" "+x[0].apellidos;
-          $("#idcliente").val(x[0].idpersona);
-          $("#cliente").attr('disabled','true');
-          $("#cliente").val(nombre);
-          $("#registrarVenta").removeAttr('disabled');
-        }
-    });
+	  if (dni!=d) {
+		  $.post("ventas",{"dni":d,"opc":2},function(data){
+		        if(data==0){
+		          $("#cliente").val("Cliente no existe...!");
+		        }else{
+		          var x = JSON.parse(data);
+		          var nombre = x[0].nombres+" "+x[0].apellidos;
+		          $("#idcliente").val(x[0].idpersona);
+		          $("#cliente").attr('disabled','true');
+		          $("#cliente").val(nombre);
+		          $("#registrarVenta").removeAttr('disabled');
+		        }
+		    });
+	}else{
+		alert("NO SE PUEDE AUTOCOMPRAR")
+	}
+	  
   }    
   });
 $("#registrarVenta").click(function (){

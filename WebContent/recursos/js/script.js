@@ -44,8 +44,7 @@ $("#saverol").click(function (){
     $.post("hc",{"nombrerol":nr,"opc":3},function () {
         listarRol();
     });
-    $("#myModal").modal('hide');
-    
+    $("#myModal").modal('hide'); 
 });
 $("#editrol").click(function (){
     var id = $("#edit_idrol").val();

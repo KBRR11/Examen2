@@ -25,7 +25,7 @@ function menu(){
 }
 $("#perfil").click(function (){
     $.get("menu",{"op":7},function (data){
-       $("#contenido").html(data); 
+       $("#contenido").html(data);
     });
    
 });

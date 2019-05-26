@@ -7,13 +7,13 @@ package pe.edu.upeu.v2019.daoImp;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import pe.edu.upeu.v2019.dao.UsuarioDao;
+import pe.edu.upeu.v2019.entity.Persona;
 import pe.edu.upeu.v2019.entity.Usuario;
 import pe.edu.upeu.v2019.util.Conexion;
 
@@ -25,9 +25,6 @@ public class UsuarioDaoImp implements UsuarioDao{
     private CallableStatement cst;
     private ResultSet rs;
     private Connection cx;
-	private PreparedStatement ps;
-	
-	
     @Override
     public HashMap<String, Object> validar(String x, String y) {
         HashMap<String, Object> map = new HashMap<>();
@@ -61,39 +58,43 @@ public class UsuarioDaoImp implements UsuarioDao{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public int delete(int key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    } 
-    public Usuario Validacion(String user, String clave) {
-		Usuario u =new Usuario();
-		 String sql = "select * from usuario where nom_user = ? and clave=?";
-		 try {
-			cx = Conexion.getConexion();
-			ps = cx.prepareStatement(sql);
-			ps.setString(1, user);
-			ps.setString(2, clave);
-			rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				u.setIdusuario(rs.getInt("idusuario"));
-				u.setIdrol(rs.getInt("idrol"));
-				u.setNom_user(rs.getString("nom_user"));
-				u.setClave(rs.getString("clave"));
-				
-			}
-		} catch (Exception e) {
-			System.out.println(e);
+    public Persona buscador_nom(String a) {
+    	Persona p = new Persona();
+    	try {
+            cx = Conexion.getConexion();
+            cst = cx.prepareCall("{call buscarid(?)}");
+            cst.setString(1, a);
+            rs = cst.executeQuery();
+            while(rs.next()){
+               p.setDni(rs.getString("dni"));
+               p.setIdpersona(rs.getInt("idpersona"));
+            }
+        } catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error: " +e);
 		}
-		 finally {
-				Conexion.cerrar2();
-			}
-		 return u;
-	}
+        return p;
+    }
 
     @Override
     public Usuario read(int key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	Usuario u2=new Usuario();
+    	try {
+			cx=Conexion.getConexion();
+			cst=cx.prepareCall("{call listarUsuario(?,?) }");
+			cst.setInt(1,key);
+			rs=cst.executeQuery();
+			while (rs.next()) {
+				u2.setIdpersona(rs.getInt("idpersona"));
+				u2.setNom_user(rs.getString("nom_user"));
+				u2.setClave(rs.getString("clave"));
+				u2.setIdusuario(rs.getString("idusuario"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error: "+e);
+		}
+		return u2;
     }
 
     @Override
@@ -105,5 +106,21 @@ public class UsuarioDaoImp implements UsuarioDao{
     public List<Map<String, Object>> readAll() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+	@Override
+	public int bloquear_user(Usuario user2) {
+		boolean p=false;
+		int x=0;
+		try {
+			cx=Conexion.getConexion();
+			cst=cx.prepareCall("{call usuariobloqueado(?)}");
+			cst.setString(1, user2.getNom_user());
+			x=cst.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Error: " +e);
+		}
+		return x;
+	}
     
 }

@@ -8,6 +8,8 @@ package pe.edu.upeu.v2019.dao;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import pe.edu.upeu.v2019.entity.Persona;
 import pe.edu.upeu.v2019.entity.Usuario;
 
 /**
@@ -18,9 +20,9 @@ public interface UsuarioDao {
     HashMap<String,Object> validar(String x, String y);
     int create(Usuario u);
     int update(Usuario u);
-    int delete(int key);
-    public Usuario Validacion(String user, String clave);
+    Persona buscador_nom(String a);
     Usuario read(int key);
     boolean search(String user);
+    int bloquear_user(Usuario user2);
     List<Map<String, Object>> readAll();
 }

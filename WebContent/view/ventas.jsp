@@ -8,6 +8,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -49,6 +50,7 @@
         </style>
     </head>
     <body>
+    <%String nom = (String)session.getAttribute("nom"); %>
         <%
             Date myDate = new Date();
         %>
@@ -127,13 +129,17 @@
                     </div>
                     <div class="form-group">
                         <label>Vendedor:</label>
-                        ${sessionScope.nombres}                      
+                        ${sessionScope.nombres}
+       
+                      <input type="text" id="idnom_user" value="<%= nom %>" style="display:block">                  
+					  <input type="text" id="iddatos"  style="display:block">    
                     </div>
                     <hr>
                     <div class="form-group">
                         <label>Cliente:</label>
                         <input type="text" class="form-control" placeholder="Ingresar DNI del Cliente" id="cliente">  
-                        <input type="hidden" id="idcliente"> 
+                        
+                         
                     </div>
                     <hr>
                     <div class="row" style="border:1px solid #e3e2e2;padding: 5px;">

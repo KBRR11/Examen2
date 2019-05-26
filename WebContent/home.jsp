@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%String nombre=(String) session.getAttribute("nombres");%>
+<%String nom_user5=(String) session.getAttribute("nom_user5");%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -77,18 +79,17 @@
                     <form method="post" action="home">
                     <div class="modal-body">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Ingresar Usuario" name="user" id="user">
+                        <div class="alert alert-danger col-sm-3" role="alert" id="mensaje" style="display: none"></div>
+                            <input type="text" class="form-control" placeholder="Ingresar Usuario" name="user" id="idnomuser">
                             <input type="hidden" value="1" name="op">
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Ingresar Password" name="pass" id="pass">
+                            <input type="password" class="form-control" placeholder="Ingresar Password" name="pass" id="pass1">
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        
-                        <input 
-			type="button" class="btn btn-primary" value="Ingresar" id="sigin">
+                        <input type="submit" class="btn btn-primary" value="Enviar" style="width: 60px; height: 36px; ">
                     </div>
                     </form>
                 </div>
