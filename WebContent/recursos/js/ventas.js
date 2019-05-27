@@ -6,7 +6,7 @@ $("#prod").keyup(function (){
     
     if(cod.length==3){
 
-    $.get("ventas",{"op":1,"cod":cod},function(data) {
+    $.get("ventas",{"opc":1,"cod":cod},function(data) {
         if(data==0){
             $("#prod").val("No existe el producto...!");
         }else{

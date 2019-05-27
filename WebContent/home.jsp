@@ -89,7 +89,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn-primary" value="Enviar" style="width: 60px; height: 36px; "  >
+                        <input type="submit" class="btn btn-primary" value="Enviar" style="width: 60px; height: 36px;"  >
                     </div>
                     </form>
                 </div>
