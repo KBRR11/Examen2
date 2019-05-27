@@ -40,7 +40,10 @@
                 </div>
                 <div class="form-group">
                     <label>Clave:</label>
-                    <input type="password" class="form-control" id="pass" value="yyyy" onclick ="this.value''">
+                    <input type="password" class="form-control" id="pass" value="yyyy" >
+                </div>
+                <div class="form-group">
+                <input type="button" class="btn btn-primary" id="actualizar" value="Actualizar" onclick="actualizar()" >
                 </div>
         </div>
     </body>

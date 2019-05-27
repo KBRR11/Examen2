@@ -9,6 +9,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -122,5 +123,30 @@ public class UsuarioDaoImp implements UsuarioDao{
 		}
 		return x;
 	}
+	
+	@Override
+	public List<Map<String, Object>> obtenerdatos(String nom,String ape,String pass) {
+		List<Map<String, Object>> lista=new ArrayList<>();
+		try {
+			cx=Conexion.getConexion();
+			cst=cx.prepareCall("{call updateuser(?,?,?)}");
+			cst.setString(2, nom);
+			cst.setString(1, ape);
+			cst.setString(3, pass);
+			rs=cst.executeQuery();
+			while (rs.next()) {
+				Map<String, Object> map = new HashMap<>();
+				map.put("idper", rs.getInt("idpersona"));
+				map.put("iduser", rs.getInt("idusuario"));
+				lista.add(map);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return lista;
+	}
     
 }
+
+    
+

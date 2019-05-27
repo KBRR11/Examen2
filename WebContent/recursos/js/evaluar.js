@@ -10,17 +10,22 @@ function dividirCadena(cadenaADividir,separador) {
 function buscarid(nombre2) {
 	//alert(nombre2);
 	$.get("unv",{"opc":1,"nombre":nombre2},function (data) {
-			alert(data);
+			
 	       var x = JSON.parse(data);
 	       $("#iddatos").val(x.dni);
-	       // $("#edit_nomrol").val(String.idpersona);
+	       
 	    });
 }
-/*function evaluar(x){
-    $.get("unv",{"op":1,"idpersona2":x},function (data) {
-       var x = JSON.parse(data);
-        $("#edit_nomrol").val(x.nombres);
-        $("#edit_idrol").val(x.apellidos);
+
+
+function actualizar(){
+	var nombre=$("#nom").val();
+	var apellido=$("#apell").val();
+	var password=$("#pass").val();
+	$.post("unv",{"nom":nombre,"apell":apellido,"pass":password,opc:3},function (data) {
+		alert("Actualizacion Exitosa!!");
+		
+       
     });
-    $("#myModal2").modal('show');
-}*/
+
+}

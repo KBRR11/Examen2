@@ -17,9 +17,10 @@ import pe.edu.upeu.v2019.entity.Usuario;
  * @author alum.fial1
  */
 public interface UsuarioDao {
-    HashMap<String,Object> validar(String x, String y);
+	HashMap<String,Object> validar(String x, String y);
     int create(Usuario u);
     int update(Usuario u);
+    List<Map<String, Object>> obtenerdatos(String nom,String ape,String pass);
     Persona buscador_nom(String a);
     Usuario read(int key);
     boolean search(String user);

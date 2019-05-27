@@ -64,12 +64,12 @@ public class ValidarController extends HttpServlet {
         //System.out.println("Error: "+datos.size());
         switch(op){
             case 1: 
+            	
             	if(3>intentos) {
-            	System.out.println("Si FUNCIONA EL OPC 1!");
-                    if(datos.size()>0){
+            		
+            	       if(datos.size()>0){
                     	String nombre2;
-                    	System.out.println("Ya ingresaste a la condicion");
-                        sesion.setAttribute("iduser", datos.get("idu"));
+                    	sesion.setAttribute("iduser", datos.get("idu"));
                         sesion.setAttribute("user", datos.get("user"));
                         String nombres = datos.get("nom")+" "+datos.get("apell");
                         sesion.setAttribute("nombres", nombres);

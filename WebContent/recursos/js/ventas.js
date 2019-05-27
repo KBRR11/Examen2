@@ -113,7 +113,13 @@ $("#cliente").keyup(function(){
 		        }
 		    });
 	}else{
-		alert("NO SE PUEDE AUTOCOMPRAR")
+		$("#cliente").popover({
+			  trigger: 'focus',
+			  content: 'No puede AutoComprar, Porfavor Acerquese a caja.',
+			  placement:'top',
+		        title:  'ATENCION!!'
+		});
+		$("#cliente").popover('show');
 	}
 	  
   }    

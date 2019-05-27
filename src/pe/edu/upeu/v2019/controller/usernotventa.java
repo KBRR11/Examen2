@@ -67,7 +67,17 @@ public class usernotventa extends HttpServlet {
     			System.out.println("Error: " +e);
     		}
     		break;
+		case 3:
+			
+			String ape= request.getParameter("apell");
+			String nom= request.getParameter("nom");
+			String pass= request.getParameter("pass");
+			ud.obtenerdatos(nom, ape, pass);
+			System.out.println("actualizado");
+			System.out.println(nom);
+			break;
 		}
+		
 	}
 
 	/**

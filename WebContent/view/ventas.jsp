@@ -129,10 +129,10 @@
                     </div>
                     <div class="form-group">
                         <label>Vendedor:</label>
-                        ${sessionScope.nombres}
-       
-                      <input type="text" id="idnom_user" value="<%= nom %>" style="display:block">                  
-					  <input type="text" id="iddatos"  style="display:block">    
+                        ${sessionScope.nombres}<br>
+                     <label>Dni: </label>
+                     <input type="text" id="idnom_user" value="<%= nom %>" style="display:none">                  
+					  <input type="text" id="iddatos"  style="border:0">     
                     </div>
                     <hr>
                     <div class="form-group">
