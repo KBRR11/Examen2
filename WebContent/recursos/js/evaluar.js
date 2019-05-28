@@ -23,9 +23,10 @@ function actualizar(){
 	var apellido=$("#apell").val();
 	var password=$("#pass").val();
 	$.post("unv",{"nom":nombre,"apell":apellido,"pass":password,opc:3},function (data) {
+		window.location.assing("http://localhost:8080/v2019/adios#no-back-button");
 		alert("Actualizacion Exitosa!!");
 		
-       
+		
     });
 
 }
